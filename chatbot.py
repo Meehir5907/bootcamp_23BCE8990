@@ -14,6 +14,7 @@ def chbt(event=None):
     else:
         add_message("You", D)
         process_input(user_input)
+        t.delete(0, END)
 
 def add_message(sender, message):
     current_time = datetime.now().strftime("%H:%M")
