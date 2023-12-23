@@ -43,21 +43,24 @@ def process_input(user_input):
         add_message("Mechbt(calculator)", "Very well")
         add_message("Mechbt(calculator)", "Please enter the mathematical expression.")
         t.delete(0,END)
-        t.bind("<Return>", calculate)
+        t.bind("<Return>", lambda event: calc_expr())
         
-
-def calculate(expr):
+def calc_expr():
     try:
         expression = t.get()
         add_message("You", expression)
         result = calculate(expression)
         add_message("Mechbt(calculator)", result)
-        t.unbind("<Return>")
-    except:
-        add_message("Invalid expression. Please enter a valid mathematical expression.")
+        t.bind("<RETURN>",chbt)
+    except Exception as e:
+        add_message("Mechbt(calculator)", "Invalid expression. Please enter a valid mathematical expression.")
 
-    else:
-        add_message("Mechbt", "I didn't understand that.")
+def calculate(expr):
+    try:
+        result = eval(expr)
+        return f"The result is {result}"
+    except Exception as e:
+        raise e
 
 r = Tk()
 r.geometry("300x600")
