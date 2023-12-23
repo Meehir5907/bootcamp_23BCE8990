@@ -28,18 +28,40 @@ def add_message(sender, message):
 def process_input(user_input):
     if "hello" in user_input:
         s = Ads.from_mp3("r1.mp3")
-        add_message("Bot", "Hello my friend")
+        add_message("Mechbt", "Hello my friend")
         play(s)
     elif "how are you" in user_input:
         s = Ads.from_mp3("r2.mp3")
-        add_message("Bot", "I am fine, how are you?")
+        add_message("Mechbt", "I am fine, how are you?")
         play(s)
+    elif "i'm fine" in user_input or "i am fine" in user_input:
+        s = Ads.from_mp3("r3.mp3")
+        add_message("Mechbt","Its nice to hear that!")
+        play(s)
+    elif (("do" in user_input) and ("calculation" in user_input)) or ("calculate" in user_input):
+        s = Ads.from_mp3("r4.mp3")
+        add_message("Mechbt(calculator)", "Very well")
+        add_message("Mechbt(calculator)", "Please enter the mathematical expression.")
+        t.delete(0,END)
+        t.bind("<Return>", calculate)
+        
+
+def calculate(expr):
+    try:
+        expression = t.get()
+        add_message("You", expression)
+        result = calculate(expression)
+        add_message("Mechbt(calculator)", result)
+        t.unbind("<Return>")
+    except:
+        add_message("Invalid expression. Please enter a valid mathematical expression.")
+
     else:
-        add_message("Bot", "I didn't understand that.")
+        add_message("Mechbt", "I didn't understand that.")
 
 r = Tk()
 r.geometry("300x600")
-r.title("Text Chat")
+r.title("Mechbt")
 r.configure(bg="black")
 
 frame = Frame(r)
