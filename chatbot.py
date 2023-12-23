@@ -51,10 +51,10 @@ def calc_expr():
         add_message("You", expression)
         result = calculate(expression)
         add_message("Mechbt(calculator)", result)
-        t.bind("<RETURN>",chbt)
+        t.bind("<Return>",chbt)
     except Exception as e:
         add_message("Mechbt(calculator)", "Invalid expression. Please enter a valid mathematical expression.")
-
+        t.bind("<Return>",chbt)
 def calculate(expr):
     try:
         result = eval(expr)
